@@ -1,14 +1,17 @@
-use bevy::{prelude::*, winit::WinitSettings};
+mod layout;
+mod components;
+
+use bevy::prelude::*;
 
 fn main() {
-   App::new()
-    .add_plugins(DefaultPlugins)
-    .insert_resource(WinitSettings::desktop_app())
-    .add_startup_system(setup)
-    .run();
+    App::new()
+        .add_plugins(DefaultPlugins)
+        .add_startup_system(spawn_camera)
+        .add_startup_system(layout::spawn_test)
+        .run();
 }
 
-fn setup(mut commands: Commands) {
+fn spawn_camera(mut commands: Commands) {
     commands.spawn(Camera2dBundle::default());
 }
-//Alice, Bob, Carol, Dave, Eve, Mallory, Oscar, and Trent 
+//Alice, Bob, Carol, Dave, Eve, Mallory, Oscar, and Trent
